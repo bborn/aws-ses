@@ -82,8 +82,9 @@ module AWS
       # @option mail [Hash] A hash that will be parsed by Mail.new
       # @option mail [Mail] A mail object, ready to be encoded
       # @return [Response]
-      def send_raw_email(mail)
-        message = mail.is_a?(Hash) ? Mail.new(mail).to_s : mail.to_s
+      def send_raw_email(mail)        
+        # message = mail.is_a?(Hash) ? Mail.new(mail).to_s : mail.to_s
+        message = mail.to_s        
         package = { 'RawMessage.Data' => Base64::encode64(message) }
         request('SendRawEmail', package)
       end
